@@ -1,0 +1,57 @@
+import random
+
+def choose():
+    words=['rainbow']
+    return random.choice(words)
+
+
+def jumble(word):
+    print(random.sample(word,len(word)))
+    jumbled="".join(random.sample(word,len(word)))
+    return jumbled
+
+def thank(p1n,p2n,p1,p2):
+    print(p1n,"Your Score is :", p1)
+    print(p2n,"Your Score is :", p2)
+    print("Thanks for playing")
+    print("Have a nice day")
+
+def play():
+    p1name=input("Player 1, Please enter your name")
+    p2name=input("Player 2, Please enter your name")
+    pp1=0
+    pp2=0
+    turn=0
+    while 1:
+        picked_word=choose()
+        jumble_word=jumble(picked_word)
+        print(jumble_word)
+        #player_1
+        if turn%2==0:
+            print(p1name,"Your Turn")
+            ans=input("What is the jumbled word?  ")
+            if ans==picked_word:
+                pp1+=1
+                print("Your Score is",pp1)
+            else:
+                print("Better luck next time. The actual word is",picked_word)
+            c=input("Press 1 to continue and 0 to quit")
+            if c=='0':
+                thank(p1name,p2name,pp1,pp2)
+                break
+        #player_2
+        else:
+            print(p2name, "Your Turn")
+            ans = input("What is the jumbled word?  ")
+            if ans == picked_word:
+                pp2 += 1
+                print("Your Score is", pp2)
+            else:
+                print("Better luck next time. The actual word is", picked_word)
+            c = input("Press 1 to continue and 0 to quit")
+            if (c == '0'):
+                thank(p1name, p2name, pp1, pp2)
+                break
+        turn+=1
+
+play()
